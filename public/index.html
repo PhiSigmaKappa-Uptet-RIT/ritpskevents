@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PSK Events</title>
       
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
       <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -14,7 +16,7 @@
     <!-- Linking out style sheet here -->
     <link rel="stylesheet" href="./css/base.css" type="text/css">
   </head>
-  <body class="bodyStyle">
+  <body class="bodyStyle container">
     <div class="psk-banner-container">
         <img class="psk-banner" src="assests/banner.jpg">
         <div class="psk-banner-overlay">
@@ -38,11 +40,34 @@
             </div>
             <br/>
             <div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div>
-                            <span class="psk-event-bold">Description: </span>
-                            Testing testing testing
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div>
+                                    <h4 class="psk-event-bold">Description</h4>
+                                    <div class="psk-event-main-block">
+                                        Co-Ed Cornhole with the best RIT has to offer.  One Day to prove them all, until next year...<br/>
+                                        Prizes for 1st, 2nd, 3rd, 4th, and 5th place<br/>
+                                        Team of two(2) - Double Elemination - 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div>
+                                    <h4 class="psk-event-bold">When</h4>
+                                    <div class="psk-event-main-block">
+                                        Date of the event is: Saturday September 12th at 12:00pm<br/>
+                                        Online Registration <strong>Ends September 10th</strong><br/>
+                                        Day of Registration starts at 10:00am and goes until 11:30am<br/>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -57,43 +82,75 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div>
-                            <span class="psk-event-bold">When: </span>
-                            Testing testing testing
+                            <h4 class="psk-event-bold">Cost</h4>
+                            <div class="psk-event-main-block">
+                                <strong>$8</strong> - per team (Team of two(2)) if paying <strong>before September 8th</strong><br/>
+                                <br/>
+                                - OR - <br/>
+                                <br/>
+                                <strong>$10</strong> - per team (Team of two(2)) if paying the <strong>day of the event</strong>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div>
-                            <h3 class="psk-event-bold">Add Your Team</h3>
+                            <h3 class="psk-event-bold">Sign-up</h3>
                             <div>
-                            
+<!--                            Need Something here-->
                             </div>
                             <div>
                                 <form class="psk-form-body">
-                                    <div class="input-group">
-                                      <span class="input-group-addon" id="basic-addon1">Team Name:</span>
-                                      <input type="text" class="form-control" aria-describedby="basic-addon1">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon1">Team Name:</span>
+                                                <input type="text" class="form-control" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
                                     </div>
                                     <br/>
-                                    <div class="input-group">
-                                      <span class="input-group-addon" id="basic-addon1">Team Member 1:</span>
-                                      <input type="text" class="form-control" aria-describedby="basic-addon1">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon2">Team Member 1:</span>
+                                                <input type="text" class="form-control" aria-describedby="basic-addon2">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon3">Team Member 2:</span>
+                                                <input type="text" class="form-control" aria-describedby="basic-addon3">
+                                            </div>
+                                        </div>
                                     </div>
                                     <br/>
-                                    <div class="input-group">
-                                      <span class="input-group-addon" id="basic-addon1">Team Member 2:</span>
-                                      <input type="text" class="form-control" aria-describedby="basic-addon1">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon2">Contact Email:</span>
+                                                <input type="email" class="form-control" aria-describedby="basic-addon2">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon3">Contact Phone:</span>
+                                                <input type="tel" class="form-control" aria-describedby="basic-addon3">
+                                            </div>
+                                        </div>
                                     </div>
                                     <br/>
-                                    <div class="input-group">
-                                      <span class="input-group-addon" id="basic-addon1">Contact Number:</span>
-                                      <input type="tel" class="form-control" aria-describedby="basic-addon1">
-                                    </div>
                                     <br/>
-                                    <div class="input-group">
-                                      <span class="input-group-addon" id="basic-addon1">Contact Email:</span>
-                                      <input type="email" class="form-control" aria-describedby="basic-addon1">
+                                    <div class="row">
+                                        <div class="col-md-2 col-xs-12"><a href="mailto:ritpsk.events@gmail.com" class="btn btn-primary">Contact</a></div>
+                                        <div class="col-md-6 col-xs-12"></div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <div>
+                                                <button type="button" class="btn btn-danger">Pay at Event</button>
+                                                <button type="button" class="btn btn-success">Pay Online Now</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
