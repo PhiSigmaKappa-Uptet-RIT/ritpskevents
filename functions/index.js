@@ -1,6 +1,6 @@
 const functions = require('firebase-functions');
 var cors = require('cors')({origin: true});
-const stripe = require("stripe")("sk_live_7XPPRGTzVa4yaHeUvoSMw6tF");
+const stripe = require("stripe")("sk_live_JMZRkhQCxQx6gY9kNknyHmNr");
 var GoogleSpreadsheet = require('google-spreadsheet');
 
  // Create and Deploy Your First Cloud Functions
@@ -67,7 +67,7 @@ exports.onlinePay = functions.https.onRequest((req, res) =>{
         var token = req.body.stripeToken; // Using Express
         // Charge the user's card:
         var charge = stripe.charges.create({
-            amount: 800,
+            amount: 6500,
             currency: "usd",
             description: "PSK Cornhole - Sept 13 - Sign-in\n Greek Lawn - Starts at 11:00am",
             source: token,
@@ -123,6 +123,42 @@ exports.eventPay = functions.https.onRequest((req, res) =>{
     });
 });
 
+exports.donation = functions.https.onRequest((req, res) =>{
+    cors(req, res, () => {
+        console.log(res);
+        var token = req.body.stripeToken; // Using Express
+        var donationType = req.body.donationSelect; // Using Express
+        var stripeEmail = req.body.stripeEmail;
+        var donationObj = {};
+        // Charge the user's card:
+        var charge = stripe.charges.create({
+            amount: 1000,
+            currency: "usd",
+            description: "Donation made to - " + donationType,
+            source: token,
+        }, function(err, charge) {
+                if(err){
+                    console.error(err);
+                    res.status(200).send('error');
+                }
+                else{
+                    donationObj.StripeEmail = stripeEmail;
+                    donationObj.Type = donationType;
+                    donationObj.Date = new Date();
+                    if(charge.id){
+                        donationObj.StripeCode = charge.id;
+                    }
+                    else{
+                        donationObj.StripeCode = 'Error Paying';
+                    }
+                    recordDonation(donationObj, function(statusCode){
+                        res.status(statusCode).redirect('https://ritpskevents.com/reser/success.html');
+                    });
+                }
+        });
+    });
+});
+
 var recordRow = function(rowObject, callback){
     var ticketDoc = new GoogleSpreadsheet("1wTsstQEMhTne1ILOE7LDwPEEBzD6PlLeUhlRakmfAn8");
     ticketDoc.useServiceAccountAuth(serviceAccoutCred, function(err, data){
@@ -143,6 +179,35 @@ var recordRow = function(rowObject, callback){
                             callback(false);
                         }
                         callback(true);
+                    });
+                }
+            
+            });                                          
+        };
+    }
+)};
+
+var recordDonation = function(rowObject, callback){
+    var ticketDoc = new GoogleSpreadsheet("1wTsstQEMhTne1ILOE7LDwPEEBzD6PlLeUhlRakmfAn8");
+    ticketDoc.useServiceAccountAuth(serviceAccoutCred, function(err, data){
+        if(err){
+            console.error(err);
+        }
+        else{
+            ticketDoc.getInfo(function(erro, sheetInfo){
+                if(erro){
+                    console.error(erro);
+                    callback(500);
+                }
+                else{
+                    ticketDoc.addRow(2, rowObject, function(er, row){
+                        if(er){
+                            console.error(er);
+                            callback(500);
+                        }
+                        else{
+                            callback(200);
+                        }
                     });
                 }
             
